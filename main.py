@@ -1,37 +1,45 @@
 import streamlit as st
-from PIL import Image
-
+import random
+import time
 # Create a title for your app
-st.title('My App')
+st.title('Smart Energy Management')
 
 # Create a 3x2 grid layout
-col1, col2, col3 = st.columns(3, gap='large')
-
+row1 = st.columns(3, gap='large')
+demo = 4
+i = 1
 # Add a button to each column
-with col1:
-    if st.button('Button 1'):
-        st.success("Button 1 clicked")
+for row in row1:
+    with row:
+        st.markdown(f'### Room {i}')
+        status1 = st.empty()
+        status1.markdown(f'''**Current Status:**  
+        **No. of people:** {demo}  
+        **Power Consumption:** ''')
+        if st.button(f'Button {i}'):
+            st.success(f"Button {i} clicked")
+    i += 1
 
-with col2:
-    if st.button('Button 2'):
-        st.success("Button 2 clicked")
-
-with col3:
-    if st.button('Button 3'):
-        st.success("Button 3 clicked")
 
 # Create another row
 row2 = st.columns(3, gap= 'large')
 
-with row2[0]:
-    a = st.text('Hello')
-    if st.button('Button 4'):
-        st.success("Button 4 clicked")
+i = 4
+for row in row2:
+    with row:
+        st.markdown(f'### Room {i}')
+        status1 = st.empty()
+        status1.markdown(f'''**Current Status:**  
+        **No. of people:** {demo}  
+        **Power Consumption:** ''')
+        if st.button(f'Button {i}'):
+            st.success(f"Button {i} clicked")
+    i += 1
 
-with row2[1]:
-    if st.button('Button 5'):
-        st.success("Button 5 clicked")
 
-with row2[2]:
-    if st.button('Button 6'):
-        st.success("Button 6 clicked")
+while True:
+    demo = random.randrange(1, 10)
+    status1.markdown(f'''**Current Status:**  
+    **No. of people:** {demo}  
+    **Power Consumption:** ''')
+    time.sleep(1)

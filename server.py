@@ -3,7 +3,8 @@ import time
 from datetime import datetime
 import pytz
 
-dummytime = True
+dummytime = False
+overide = False
 ist = pytz.timezone('Asia/Kolkata')
 
 app = Flask(__name__)
@@ -12,9 +13,18 @@ for i in range(1, 7):
     with open(f'data\{i}.csv', 'w') as f:
         f.write('count, temp, state, time\n')
 
-@app.route('/get/<id>', methods=['GET'])
-def get(id):
-    return jsonify({"message": f"This is a GET endpoint. ID: {id}"})
+@app.route('/get/<param>', methods=['GET'])
+def get(param):
+    global overide
+    if param == 'set_over':
+        overide = True
+    elif param == 'get_over':
+        if overide == True:
+            overide = False
+            return 'yes'
+        else:
+            return 'no'
+
 
 epoch = time.time()
 @app.route('/post', methods=['POST'])

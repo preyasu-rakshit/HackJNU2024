@@ -1,8 +1,9 @@
 import streamlit as st
-import random
 import time
 import pandas as pd
 import plotly.express as px
+import requests
+from url import url
 
 # Create a title for app
 st.markdown("<h1 style='text-align: center; color: white;'>Room 1</h1>", unsafe_allow_html=True)
@@ -22,6 +23,7 @@ with row1[0]:
     **No. of people:** {demo}  
     **Power Consumption:** ''')
     if st.button('Toggle State'):
+        requests.get(url)
         st.success(f"Toggled Succesfully")
     ac = st.slider('Set Thermostat', 16, 32, step=1)
 
@@ -43,7 +45,7 @@ with row2[1]:
     fig = px.pie(response_counts,labels=response_counts.index,values=response_counts.values,title='Up time / Down Time', height=350)
     st.plotly_chart(fig, use_container_width=True)
 
-def update_status(room, cur_stat, num, temp, power):
+def update_status(room):
     with open(f'data/{room}.csv', 'r') as f:
         lines = f.readlines()
         if len(lines) <= 1:
@@ -63,7 +65,5 @@ def update_status(room, cur_stat, num, temp, power):
 
 
 while True:
-    demo = random.randrange(1, 10)
-    cs = random.choice(['ON', 'OFF'])
-    update_status(1, cs, demo, 12, 18)
+    update_status(1)
     time.sleep(1)

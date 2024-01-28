@@ -3,7 +3,7 @@ from streamlit_extras.switch_page_button import switch_page
 import random
 import time
 # Create a title for app
-st.title('Smart Energy Management')
+st.title('IoT Enabled Energy Management System')
 st.markdown('<br>', unsafe_allow_html=True)
 # Create a 3x2 grid layout
 row1 = st.columns(3, gap='large')

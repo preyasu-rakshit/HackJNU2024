@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 import pytz
 
-dummytime = False
+dummytime = True
 overide = False
 ist = pytz.timezone('Asia/Kolkata')
 
